@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import Nav from './Components/Nav'
+import Nav from './Components/nav'
 export default function Home() {
   return (
     <main className="">
-      <Nav/>
+      <Nav />
     </main>
   )
 }

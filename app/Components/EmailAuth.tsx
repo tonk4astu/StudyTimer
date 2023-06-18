@@ -1,34 +1,72 @@
+'use client'
+import { useState, FormEvent, use } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
 import { supabase } from "./supabaseClient";
+import useStore from "../Store";
 
-type AuthProps = {
-    email: string,
-    password: string,
-    types: 'signUp' | 'signIn'
-}
-export default async function EmailAuth(props:AuthProps) {
-    const {email,password,types} = props;
-    let error = null;
-    if(types === 'signUp') {
-        error = await signUp(email,password);
-    } else {
-        error = await signIn(email,password);
+export default function EmailAuth() {
+    const { loginUser } = useStore();
+    const [isLogin, setIsLogin] = useState(true);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const router = useRouter();
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        if (isLogin) {
+            const { error } = await supabase.auth.signInWithPassword({ email, password });
+            setEmail('');
+            setPassword('');
+            if (error) {
+                alert(error.message);
+            } else {
+                router.push("/");
+            }
+        } else {
+            const { error } = await supabase.auth.signUp({ email, password });
+            setEmail('');
+            setPassword('');
+            if (error) {
+                alert(error.message);
+            } else {
+                router.push("/");
+            }
+        }
     }
-    return error;
-}
 
-async function signUp(email:string,password:string) {
-    const { error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      })
-      return error;
-}
-
-async function signIn(email:string,password:string) {
-    const { error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      })
-      return error;
+    function SignOut() {
+        supabase.auth.signOut();
+    }
+    return <div className="">
+        <p>{loginUser.MailAddress}</p>
+        <ArrowRightOnRectangleIcon
+            className="h-5 w-5 text-gray-500"
+            onClick={SignOut}
+        />
+        <form onSubmit={handleSubmit}>
+            <div className="flex flex-col">
+                <label htmlFor="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
+            <div className="flex flex-col">
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
+            <button type="submit">{isLogin ? "Login" : "Create Account"}</button>
+            <span onClick={() => setIsLogin(!isLogin)}>
+                {isLogin ? "Create new account ?" : "Back to login"}
+            </span>
+        </form>
+    </div>
 }
 
