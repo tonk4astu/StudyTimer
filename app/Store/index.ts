@@ -1,8 +1,8 @@
 import {create} from 'zustand'
 
 type LoginUser ={
-    MailAddress: string | undefined,
-    password: string | undefined
+    id: string | undefined
+    MailAddress: string | undefined
 }
 
 type State = {
@@ -14,10 +14,10 @@ type State = {
 const useStore = create<State>(set => ({
     loginUser: {
         MailAddress: '',
-        password: ''
+        id: ''
     },
     updateLoginUser: (loginUser: LoginUser) => set(state => ({ loginUser })),
-    resetLoginUser: () => set(state => ({ loginUser: { MailAddress: '', password: '' } }))
+    resetLoginUser: () => set(state => ({ loginUser: { MailAddress: '', id: '' } }))
 }));
 
 export default useStore;

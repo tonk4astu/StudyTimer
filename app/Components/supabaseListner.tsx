@@ -12,16 +12,25 @@ export default function SupabaseListner({
 }: {
     accessToken?: string
 }) {
-    const royter = useRouter();
+    const router = useRouter();
     const { updateLoginUser } = useStore();
     useEffect(() => {
         const getUserInfo = async () => {
             const { data } = await supabase.auth.getSession();
             if (data.session) {
                 updateLoginUser({
-                    MailAddress: data.session?.user.email,
-                    Password: data.session?.user.,
+                    id: data.session?.user.id,
+                    MailAddress: data.session?.user.email!,
                 })
-            }, [accessToken])
+            }
+        }
+        getUserInfo();
+        supabase.auth.onAuthStateChange((_, session) => {
+                updateLoginUser({ id: session?.user.id, MailAddress: session?.user.email! })
+                if(session?.access_token != accessToken){
+                    router.refresh();
+                }
+            })
+        }, [accessToken])
     return null;
-}
+    }
