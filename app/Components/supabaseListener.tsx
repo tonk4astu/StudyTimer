@@ -2,8 +2,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "./supabaseClient";
-import { useState } from "react";
-import EmailAuth from "./emailAuth";
 import useStore from '../Store';
 
 
@@ -26,11 +24,11 @@ export default function SupabaseListner({
         }
         getUserInfo();
         supabase.auth.onAuthStateChange((_, session) => {
-                updateLoginUser({ id: session?.user.id, MailAddress: session?.user.email! })
-                if(session?.access_token != accessToken){
-                    router.refresh();
-                }
-            })
-        }, [accessToken])
+            updateLoginUser({ id: session?.user.id, MailAddress: session?.user.email! })
+            if (session?.access_token != accessToken) {
+                router.refresh();
+            }
+        })
+    }, [accessToken])
     return null;
-    }
+}
