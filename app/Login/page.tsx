@@ -1,5 +1,4 @@
 'use client'
-import { useState } from "react";
 import EmailAuth from "../Components/emailAuth";
 
 //ログイン機能

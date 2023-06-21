@@ -1,8 +1,8 @@
 'use client'
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "./supabaseClient";
-import useStore from '../Store';
+import { supabase } from './supabaseClient';
+import useStore from '../Store/index';
 
 
 export default function SupabaseListner({
