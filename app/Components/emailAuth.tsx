@@ -33,23 +33,15 @@ export default function EmailAuth() {
             if (error) {
                 alert(error.message);
             } else {
-                router.push("/");
+                router.push("/Login");
             }
         }
     }
 
-    // サインアウト処理
-    function SignOut() {
-        supabase.auth.signOut();
-    }
-
     return (
         <div className="">
-            <p></p>
-            <ArrowRightOnRectangleIcon
-                className="h-5 w-5 text-gray-500"
-                onClick={SignOut}
-            />
+            <p>{loginUser.MailAddress}</p>
+            
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-col">
                     <label htmlFor="email">Email</label>

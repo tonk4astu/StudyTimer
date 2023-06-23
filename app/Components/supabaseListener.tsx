@@ -23,6 +23,8 @@ export default function SupabaseListner({
                     id: data.session?.user.id,
                     MailAddress: data.session?.user.email!,
                 })
+            }else{
+                router.push("/Login");
             }
         }
 
