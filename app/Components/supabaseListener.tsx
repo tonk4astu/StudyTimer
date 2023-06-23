@@ -12,23 +12,35 @@ export default function SupabaseListner({
 }) {
     const router = useRouter();
     const { updateLoginUser } = useStore();
+
     useEffect(() => {
+        // ユーザー情報を取得する関数
         const getUserInfo = async () => {
             const { data } = await supabase.auth.getSession();
             if (data.session) {
+                // ログインユーザーの情報を更新
                 updateLoginUser({
                     id: data.session?.user.id,
                     MailAddress: data.session?.user.email!,
                 })
             }
         }
+
+        // ユーザー情報を取得
         getUserInfo();
+
+        // サインイン状態の変更を監視
         supabase.auth.onAuthStateChange((_, session) => {
+            // ログインユーザーの情報を更新
             updateLoginUser({ id: session?.user.id, MailAddress: session?.user.email! })
-            if (session?.access_token != accessToken) {
+
+            // アクセストークンが変更された場合はページをリロード
+            if (session?.access_token !== accessToken) {
                 router.refresh();
             }
         })
-    }, [accessToken])
+    }, [accessToken]);
+
+    
     return null;
 }
