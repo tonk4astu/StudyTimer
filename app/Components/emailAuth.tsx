@@ -45,7 +45,7 @@ export default function EmailAuth() {
 
     return (
         <div className="">
-            <p>{loginUser.MailAddress}</p>
+            <p></p>
             <ArrowRightOnRectangleIcon
                 className="h-5 w-5 text-gray-500"
                 onClick={SignOut}
@@ -69,10 +69,13 @@ export default function EmailAuth() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit">{isLogin ? "Login" : "Create Account"}</button>
+                <div className=" flex items-center flex-col">
+                <button type="submit" className=" bg-slate-900">
+                    {isLogin ? "Login" : "Create Account"}</button>
                 <span onClick={() => setIsLogin(!isLogin)}>
                     {isLogin ? "Create new account?" : "Back to login"}
                 </span>
+                </div>
             </form>
         </div>
     );
