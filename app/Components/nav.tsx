@@ -14,16 +14,21 @@ export default function Nav() {
         </div>
         <div className="flex flex-row items-center mx-5">
             <Link href="/Login">
-            {!loginUser.MailAddress &&(<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Sign In
-            </button>
+            {!loginUser.MailAddress &&(
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Sign In
+                </button>
             )}
-            <p>{loginUser.MailAddress}</p>
+            
             {loginUser.MailAddress &&
-            (<ArrowRightOnRectangleIcon
+            (
+            <div className=' flex text-slate-500'>
+            <p>Exit</p>
+            <ArrowRightOnRectangleIcon
                 className="h-5 w-5 text-gray-500"
                 onClick={SignOut}
-            />)}
+            />
+            </div>)}
             </Link>
         </div>
     </nav>

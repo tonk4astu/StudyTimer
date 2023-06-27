@@ -1,7 +1,6 @@
 'use client'
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
 import { supabase } from "./supabaseClient";
 import useStore from "../Store";
 
@@ -23,7 +22,7 @@ export default function EmailAuth() {
             if (error) {
                 alert(error.message);
             } else {
-                router.push("/");
+                router.push("/Timer");
             }
         } else {
             // アカウント作成処理
@@ -65,7 +64,7 @@ export default function EmailAuth() {
                 <button type="submit" className=" bg-slate-900">
                     {isLogin ? "Login" : "Create Account"}</button>
                 <span onClick={() => setIsLogin(!isLogin)}>
-                    {isLogin ? "Create new account?" : "Back to login"}
+                    {isLogin ? "Create new account?" : "Login"}
                 </span>
                 </div>
             </form>

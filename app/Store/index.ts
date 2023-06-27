@@ -26,7 +26,8 @@ const useStore = create<State>(set => ({
     set(state => ({ loginUser })),
 
   // loginUserを初期状態にリセットする関数
-  resetLoginUser: () => set(state => ({ loginUser: { MailAddress: '', id: '' } }))
+  resetLoginUser: () => 
+    set(state => ({ loginUser: { MailAddress: '', id: '' } }))
 }));
 
 export default useStore;
