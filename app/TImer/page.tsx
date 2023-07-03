@@ -4,9 +4,9 @@ import Time from '../Components/Timer';
 import Nav from '../Components/nav';
 
 export default function Timer() {
-    return(
+    return (
         <>
-        <Nav/>
+            <Nav />
             <Suspense fallback={<>loading...</>}>
                 {Time()}
             </Suspense>

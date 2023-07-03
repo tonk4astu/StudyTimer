@@ -23,7 +23,7 @@ export default function SupabaseListner({
                     id: data.session?.user.id,
                     MailAddress: data.session?.user.email!,
                 })
-            }else{
+            } else {
                 router.push("/Login");
             }
         }
@@ -43,6 +43,6 @@ export default function SupabaseListner({
         })
     }, [accessToken]);
 
-    
+
     return null;
 }

@@ -40,7 +40,7 @@ export default function EmailAuth() {
     return (
         <div className="">
             <p>{loginUser.MailAddress}</p>
-            
+
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-col">
                     <label htmlFor="email">Email</label>
@@ -61,11 +61,11 @@ export default function EmailAuth() {
                     />
                 </div>
                 <div className=" flex items-center flex-col">
-                <button type="submit" className=" bg-slate-900">
-                    {isLogin ? "Login" : "Create Account"}</button>
-                <span onClick={() => setIsLogin(!isLogin)}>
-                    {isLogin ? "Create new account?" : "Login"}
-                </span>
+                    <button type="submit" className=" bg-slate-900">
+                        {isLogin ? "Login" : "Create Account"}</button>
+                    <span onClick={() => setIsLogin(!isLogin)}>
+                        {isLogin ? "Create new account?" : "Login"}
+                    </span>
                 </div>
             </form>
         </div>
