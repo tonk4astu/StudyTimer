@@ -1,5 +1,5 @@
 'use client'
-import useStore from '../Store'
+import useStore from '../Store/loginStore'
 import Link from 'next/link'
 import { SignOut } from './signOut'
 import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'

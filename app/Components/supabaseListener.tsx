@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from './supabaseClient';
-import useStore from '../Store/index';
+import useStore from '../Store/loginStore';
 
 
 export default function SupabaseListner({
