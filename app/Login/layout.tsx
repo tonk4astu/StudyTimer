@@ -14,9 +14,9 @@ export default async function AuthLayout({
         data: { session },
     } = await supabase.auth.getSession()
     return (
-        <>
+        <div className="bg-yellow-400 h-[100vh] w-[100vw]">
             <SupabaseListener accessToken={session?.access_token} />
             {children}
-        </>
+        </div>
     )
 }
