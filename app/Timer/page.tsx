@@ -15,8 +15,8 @@ export default function Timer() {
             <Nav />
             <Suspense fallback={<>loading...</>}>
                 <div className={roboto.className+
-                    ' absolute top-1/2 left-1/2 translate-x--1/2 translate-y--1/2'}>
-                    {Time()}
+                    ' h-screen w-screen flex text-7xl justify-center items-center'}>
+                    <p>{Time()}</p>
                     </div>
             </Suspense>
         </>
