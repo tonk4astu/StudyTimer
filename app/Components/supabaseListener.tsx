@@ -38,6 +38,7 @@ export default function SupabaseListner({
 
             // アクセストークンが変更された場合はページをリロード
             if (session?.access_token !== accessToken) {
+                sessionStorage.removeItem('isLogin');
                 router.refresh();
             }
         })
