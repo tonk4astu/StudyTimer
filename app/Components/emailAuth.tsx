@@ -24,6 +24,7 @@ export default function EmailAuth() {
             if (error) {
                 alert(error.message);
             } else {
+                sessionStorage.setItem('isLogin', isLogin.toString());
                 router.push("/Timer");
             }
         } else {
