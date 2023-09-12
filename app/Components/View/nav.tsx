@@ -1,7 +1,7 @@
 'use client'
-import useStore from '../Store/loginStore'
+import useStore from '../../Store/loginStore'
 import Link from 'next/link'
-import { SignOut } from './signOut'
+import { SignOut } from '../signOut'
 import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
 export default function Nav() {
     const { loginUser } = useStore();

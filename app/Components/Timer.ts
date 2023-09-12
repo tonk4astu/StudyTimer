@@ -1,10 +1,13 @@
+'use client'
 import React, { useState, useEffect } from 'react';
+import { useTimeStore } from '@/app/Store/timeStore';
 const Timer = () => {
     const [initialTime] = useState(Date.now());
     const [count, setCount] = useState(0);
-    const [paused, setPaused] = useState(false);
+    const paused = useTimeStore(state => state.pause);
   
     useEffect(() => {
+      console.dir([paused, initialTime])
       if (paused) {
         return;
       }
@@ -15,12 +18,13 @@ const Timer = () => {
         const now = Date.now();
         nextTime = now + 1000 - ((nextTime - now) % 1000);
         const diff = nextTime - now;
-  
+        
         timerId = setTimeout(loop, diff);
       };
       const diff = nextTime - now;
       let timerId = setTimeout(loop, diff);
       return () => {
+        console.log('clear');
         clearTimeout(timerId);
       };
     }, [paused, initialTime]);

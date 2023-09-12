@@ -1,5 +1,5 @@
 'use client'
-import EmailAuth from "../Components/emailAuth";
+import EmailAuth from "../Components/View/emailAuth";
 
 //ログイン機能
 export default async function Login() {
