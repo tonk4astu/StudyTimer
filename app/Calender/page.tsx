@@ -1,12 +1,27 @@
-'use client'
-import EmailAuth from "../Components/View/emailAuth";
+import { supabase } from "@/app/Components/supabaseClient";
+type Calender={
+    days:number
+    children:string
+}
 
-//ログイン機能
-export default async function Login() {
+const getUserData = (month:string)=>{
+    supabase.auth.getUser();
+    //TODO:supabaseからユーザーの今月の実績データを取得する
+}
 
+const Calender =(props:Calender)=>{
+    const layout = CalenderLayout(props);
+
+}
+
+export default function CalenderLayout (props:Calender) {
+    const defaultProps = {
+        days: 30,
+        children: "test"
+    }
     return (
-        <main className=" flex flex-col items-center justify-center">
-            <EmailAuth />
-        </main>
+        <div >
+            {props.children}
+        </div>
     )
 }

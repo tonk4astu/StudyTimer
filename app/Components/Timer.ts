@@ -4,7 +4,7 @@ import { useTimeStore } from '@/app/Store/timeStore';
 const Timer = () => {
     const [initialTime] = useState(Date.now());
     const [count, setCount] = useState(0);
-    const paused = useTimeStore(state => state.pause);
+    const {paused} = useTimeStore((state) => ({paused:state.pause}));
   
     useEffect(() => {
       console.dir([paused, initialTime])
