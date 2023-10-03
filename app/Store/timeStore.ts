@@ -9,7 +9,7 @@ type time ={
 
 
 export const useTimeStore = create<time>(set => ({
-    pause: false,
+    pause: true,
     togglePause: () => set(state => ({ pause: !state.pause })),
     resetPause: () => set(state => ({ pause: false }))
 }));

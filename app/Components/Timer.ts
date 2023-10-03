@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { useTimeStore } from '@/app/Store/timeStore';
+import { useTimeStore } from '@/Store/timeStore';
 const Timer = () => {
     const [initialTime] = useState(Date.now());
     const [count, setCount] = useState(0);
