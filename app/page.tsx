@@ -1,4 +1,4 @@
-import Nav from './Components/View/nav'
+import Nav from './Components/Layout/nav'
 export default function Home() {
   return (
     <main className="">

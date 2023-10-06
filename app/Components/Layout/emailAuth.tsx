@@ -28,8 +28,7 @@ export default function Login() {
       email,
       password,
     })
-    console.log(await supabase.auth.getSession())
-    router.push('/')
+    router.refresh()
   }
 
   const handleSignOut = async () => {

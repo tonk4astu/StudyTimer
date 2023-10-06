@@ -1,27 +1,40 @@
-import { supabase } from "@/app/Components/supabaseClient";
+import { supabase } from "@/Components/supabaseClient";
+import { UserResponse } from "@supabase/supabase-js";
+import Nav from "@/Components/Layout/nav";
 type Calender={
     days:number
     children:string
 }
 
-const getUserData = (month:string)=>{
-    supabase.auth.getUser();
+const getUserData =async (month:string)=>{
+    const {data} = await supabase.auth.getUser();
+    console.dir(await data);
     //TODO:supabaseからユーザーの今月の実績データを取得する
 }
 
 const Calender =(props:Calender)=>{
-    const layout = CalenderLayout(props);
+    // const layout = CalenderLayout(props);
 
 }
 
-export default function CalenderLayout (props:Calender) {
-    const defaultProps = {
-        days: 30,
-        children: "test"
-    }
+const calenderPages=async()=>{
+    await getUserData('4');
     return (
-        <div >
-            {props.children}
+        <div>
+        <Nav/>
         </div>
     )
 }
+
+export default calenderPages;
+
+// function CalenderLayout (props:Calender) {
+//     const defaultProps = {
+//         days: 30,
+//         children: "test"
+//     }
+//     return (
+//         <div >
+//         </div>
+//     )
+// }

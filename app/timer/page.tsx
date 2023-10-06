@@ -1,6 +1,6 @@
 'use client'
-import Timer from '@/Components/View/timer';
-import Nav from '@/Components/View/nav';
+import Timer from '@/Components/Layout/timer';
+import Nav from '@/Components/Layout/nav';
 import React, { Suspense } from 'react';
 
 export default function timerPage() {

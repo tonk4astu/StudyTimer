@@ -1,5 +1,5 @@
 'use client'
-import useStore from '../../Store/loginStore'
+import useStore from '@/Store/loginStore'
 import Link from 'next/link'
 import { SignOut } from '../signOut'
 import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
@@ -13,7 +13,7 @@ export default function Nav() {
                 <h1 className="text-2xl font-bold">Study Timer</h1>
             </div>
             <div className="flex flex-row items-center mx-5">
-                <Link href="/Login">
+                <Link href="/login">
                     {loginUser.MailAddress &&
                         (
                             <div className=' flex text-slate-500'>
