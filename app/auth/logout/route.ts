@@ -9,7 +9,8 @@ export const dynamic = 'force-dynamic'
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url)
   const supabase = createRouteHandlerClient<Database>({ cookies })
-
+  debugger
+  console.log("logout")
   await supabase.auth.signOut()
 
   return NextResponse.redirect(`${requestUrl.origin}/login`, {

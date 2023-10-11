@@ -3,10 +3,12 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import useStore from '@/Store/loginStore'
 
 import type { Database } from '@/Types/database.types'
 
 export default function Login() {
+  const loginUser = useStore(state=>state.loginUser);
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
@@ -28,8 +30,10 @@ export default function Login() {
       email,
       password,
     })
-    console.log(await supabase.auth.getSession())
-    router.push('/')
+    if(await supabase.auth.getSession()){
+      useStore.setState({loginUser:{MailAddress:email,id:''}})
+      router.push('/timer')
+    }
   }
 
   const handleSignOut = async () => {

@@ -3,21 +3,12 @@ import { Roboto } from 'next/font/google';
 import { useTimeStore } from '@/Store/timeStore';
 import Time from '@/Components/Timer';
 import {Button} from '@/Components/Ui/button';
-import { cookies  } from 'next/headers';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 const roboto = Roboto({
     display: 'swap',
     weight: '700',
     preload: false,
 });
-
-const getUserData = async()=>{
-    const cookieStore = cookies();
-    const supabase = createServerComponentClient({cookies:()=>cookieStore});
-    const {data} = await supabase.from('users').select('*');
-    console.log(data);
-}
 
 const timer = () => {
     const pause = useTimeStore(state=>state.pause);
