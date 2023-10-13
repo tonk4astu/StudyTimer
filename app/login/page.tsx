@@ -3,7 +3,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import useStore from '@/Store/loginStore'
+import useStore from '@/Components/Store/loginStore'
 
 import type { Database } from '@/Types/database.types'
 
