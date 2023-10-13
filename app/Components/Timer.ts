@@ -1,13 +1,12 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { useTimeStore } from '@/Store/timeStore';
+import { useTimeStore } from '@/Components/Store/timeStore';
 const Timer = () => {
     const [initialTime] = useState(Date.now());
     const [count, setCount] = useState(0);
     const {paused} = useTimeStore((state) => ({paused:state.pause}));
   
     useEffect(() => {
-      console.dir([paused, initialTime])
       if (paused) {
         return;
       }

@@ -1,6 +1,6 @@
 'use client'
 import { Roboto } from 'next/font/google';
-import { useTimeStore } from '@/Store/timeStore';
+import { useTimeStore } from '@/Components/Store/timeStore';
 import Time from '@/Components/Timer';
 import {Button} from '@/Components/Ui/button';
 
