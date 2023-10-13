@@ -1,9 +1,28 @@
 'use client'
-import useStore from '@/Store/loginStore'
-import Link from 'next/link'
+import useStore from '@/Components/Store/loginStore'
+import Router from 'next/router';
+import Link from 'next/link';
 import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
 export default function Nav() {
     const  loginUser  = useStore(state=>state.loginUser);
+    
+    const click = async()=>{
+        await fetch('/auth/logout',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            }
+            
+        }).then((res)=>{
+            if(res.ok){
+                useStore.setState({loginUser:{MailAddress:'',id:''}})
+                Router.push('/login')
+            }
+
+            console.dir(res)
+        })
+    }
+    
     return (
         <nav className="flex flex-row 
         justify-between items-center 
@@ -16,18 +35,16 @@ export default function Nav() {
                         (
                             <div className=' flex text-slate-500'>
                                 <p>Exit</p>
-                                <button formAction={"/logout"}>
                                 <ArrowRightOnRectangleIcon
                                     className="h-5 w-5 text-gray-500"
                                     type='button'
-                                    
+                                    onClick={async()=>await click()}
                                 />
-                                </button>
                             </div>)}
                     {!loginUser.MailAddress && (
-                        <button formAction="/login" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <Link href='/login' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Sign In
-                        </button>
+                        </Link>
                     )}
             </div>
         </nav>
