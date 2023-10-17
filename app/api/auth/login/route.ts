@@ -8,9 +8,7 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url)
-  const formData = await request.formData()
-  const email = String(formData.get('email'))
-  const password = String(formData.get('password'))
+  const { email, password } = await request.json();
   const supabase = createRouteHandlerClient<Database>({ cookies })
 
   await supabase.auth.signInWithPassword({
