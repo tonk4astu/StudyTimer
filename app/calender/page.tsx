@@ -1,8 +1,10 @@
 "use client"
 import "@/globals.css"
 import { supabase } from "@/Components/supabaseClient"
+import Tag from "@/Components/Ui/tag"
 import { UserResponse } from "@supabase/supabase-js"
 import Nav from "@/Components/Layout/nav"
+import { AnchorHTMLAttributes } from "react"
 type Calender = {
   days: number
   children: string
@@ -22,7 +24,10 @@ const calenderPages = async () => {
   return (
     <div>
       <Nav />
-      {CalenderLayout({ days: 30, children: "test" })}
+      <div className="text-lg align-middle text-center">
+        {1 /*データの取得月を表示*/}月
+      </div>
+      {CalenderLayout({ days: 32, children: "test" })}
     </div>
   )
 }
@@ -36,17 +41,29 @@ function CalenderLayout(props: Calender) {
     children: "test",
   }
   const dayBox = (index: number) => {
+    //TODO:indexと取得したデータの日付が一致したら、その日の実績を表示する
+    const studyDay = () => {
+      if (index === 1) {
+        return (
+          <Tag
+            tagName="幾何学における消極的エンペラーペンギン"
+            tagColor="bg-slate-400"
+            studyHour={2}
+          ></Tag>
+        )
+      }
+    }
+
     return (
-      <div
-        key={index}
-        className={
-          "border border-slate-900 hover:bg-slate-400 container mx-auto"
-        }
+      <a
+        onClick={(e) => StudyScoreView(e)}
+        className={"border border-slate-900 hover:bg-slate-400 container"}
       >
-        <button className={"w-full h-full"} onClick={(e) => StudyScoreView(e)}>
-          {index}
-        </button>
-      </div>
+        <div key={index}>
+          <div className={"border-b border-slate-900"}>{index}</div>
+          <div>{studyDay()}</div>
+        </div>
+      </a>
     )
   }
 
@@ -66,7 +83,7 @@ function CalenderLayout(props: Calender) {
   )
 }
 
-const StudyScoreView = (event: React.MouseEvent<HTMLButtonElement>) => {
+const StudyScoreView = (event: React.MouseEvent<HTMLAnchorElement>) => {
   event.preventDefault()
   console.log("test")
   //TODO:supabaseからユーザーの当日の実績データを取得する
